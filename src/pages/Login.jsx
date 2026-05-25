@@ -16,31 +16,29 @@ function Login() {
   const [password, setPassword] =
     useState("");
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLogin = () => {
+    const enteredEmail =
+      email.trim();
 
-    if (!email || !password) {
-      alert(
-        "Please enter email and password"
-      );
-
-      return;
-    }
+    const enteredPassword =
+      password.trim();
 
     if (
-      email.trim() ===
+      enteredEmail ===
         "ecommerce@gmail.com" &&
-      password.trim() ===
+      enteredPassword ===
         "Test@321"
     ) {
       localStorage.setItem(
         "user",
         JSON.stringify({
-          email: email,
+          email:
+            enteredEmail,
         })
       );
 
-      navigate("/products");
+      window.location.href =
+        "/products";
     } else {
       alert(
         "Invalid Email or Password"
@@ -56,10 +54,8 @@ function Login() {
       <div className="overlay"></div>
 
       <div className="login-container">
-        <form
+        <div
           className="login-box"
-          onSubmit={handleLogin}
-          noValidate
           data-testid="login-form"
         >
           <h1>ShopEase</h1>
@@ -68,6 +64,8 @@ function Login() {
             Login to continue shopping
           </p>
 
+          {/* EMAIL */}
+
           <div
             style={{
               position: "relative",
@@ -75,13 +73,10 @@ function Login() {
             }}
           >
             <FaEnvelope
-              className="email-icon"
               style={{
                 position: "absolute",
                 left: "15px",
-                top: "50%",
-                transform:
-                  "translateY(-50%)",
+                top: "18px",
                 color: "gray",
                 zIndex: 10,
               }}
@@ -95,6 +90,7 @@ function Login() {
               data-testid="email-input"
               className="login-input"
               placeholder="Enter Email"
+              autoComplete="off"
               value={email}
               onChange={(e) =>
                 setEmail(
@@ -107,6 +103,8 @@ function Login() {
             />
           </div>
 
+          {/* PASSWORD */}
+
           <div
             style={{
               position: "relative",
@@ -114,13 +112,10 @@ function Login() {
             }}
           >
             <FaLock
-              className="password-icon"
               style={{
                 position: "absolute",
                 left: "15px",
-                top: "50%",
-                transform:
-                  "translateY(-50%)",
+                top: "18px",
                 color: "gray",
                 zIndex: 10,
               }}
@@ -134,6 +129,7 @@ function Login() {
               data-testid="password-input"
               className="login-input"
               placeholder="Enter Password"
+              autoComplete="off"
               value={password}
               onChange={(e) =>
                 setPassword(
@@ -146,16 +142,20 @@ function Login() {
             />
           </div>
 
+          {/* LOGIN BUTTON */}
+
           <button
             id="login-btn"
-            name="loginButton"
-            type="submit"
-            aria-label="Login"
             data-testid="login-button"
+            aria-label="Login"
             className="login-btn"
+            onClick={handleLogin}
+            type="button"
           >
             Login
           </button>
+
+          {/* DEMO */}
 
           <div
             className="demo-credentials"
@@ -180,7 +180,7 @@ function Login() {
               Test@321
             </strong>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
