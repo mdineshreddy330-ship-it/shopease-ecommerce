@@ -37,8 +37,6 @@ function Login() {
         })
       );
 
-      alert("Login Successful");
-
       navigate("/products");
     } else {
       alert(
@@ -122,9 +120,9 @@ function Login() {
           </button>
 
           <div className="demo-credentials">
-            <p>
+            <h4>
               Demo Credentials
-            </p>
+            </h4>
 
             <p>
               Email:

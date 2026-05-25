@@ -1209,3 +1209,26 @@ body.dark .profile-card button {
 
   color: white;
 }
+.demo-credentials {
+  margin-top: 25px;
+
+  text-align: center;
+
+  color: #e5e7eb;
+
+  line-height: 1.8;
+}
+
+.demo-credentials h4 {
+  margin-bottom: 12px;
+
+  font-size: 18px;
+
+  font-weight: 600;
+}
+
+.demo-credentials p {
+  margin: 4px 0;
+
+  font-size: 15px;
+}
