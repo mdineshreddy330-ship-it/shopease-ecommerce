@@ -17,35 +17,54 @@ function Login() {
     useState("");
 
   const handleLogin = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const enteredEmail =
-      email.trim();
+  // Clear old sessions first
 
-    const enteredPassword =
-      password.trim();
+  localStorage.removeItem("user");
 
-    if (
-      enteredEmail ===
-        "ecommerce@gmail.com" &&
-      enteredPassword ===
-        "Test@321"
-    ) {
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          email:
-            enteredEmail,
-        })
-      );
+  sessionStorage.clear();
 
-      navigate("/products");
-    } else {
-      alert(
-        "Invalid Email or Password"
-      );
-    }
-  };
+  const enteredEmail =
+    email.trim();
+
+  const enteredPassword =
+    password.trim();
+
+  if (
+    enteredEmail ===
+      "ecommerce@gmail.com" &&
+    enteredPassword ===
+      "Test@321"
+  ) {
+    const userData = {
+      email:
+        enteredEmail,
+      loggedIn: true,
+      loginTime:
+        new Date().getTime(),
+    };
+
+    // Save fresh login session
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify(userData)
+    );
+
+    sessionStorage.setItem(
+      "isAuthenticated",
+      "true"
+    );
+
+    navigate("/products");
+    window.location.reload();
+  } else {
+    alert(
+      "Invalid Email or Password"
+    );
+  }
+};
 
   return (
     <div

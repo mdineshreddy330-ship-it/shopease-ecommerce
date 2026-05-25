@@ -34,10 +34,13 @@ function Navbar({
     localStorage.getItem("theme") === "dark";
 
   const logout = () => {
-    localStorage.removeItem("user");
+  localStorage.clear();
 
-    navigate("/");
-  };
+  sessionStorage.clear();
+
+  navigate("/");
+  window.location.reload();
+};
 
   const toggleTheme = () => {
     if (darkMode) {

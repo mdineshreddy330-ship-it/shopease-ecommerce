@@ -1,4 +1,7 @@
-import React from "react";
+import React, {
+  useEffect,
+  useState,
+} from "react";
 
 import {
   BrowserRouter,
@@ -19,16 +22,47 @@ import Profile from "./pages/Profile";
 import "./styles/app.css";
 
 function App() {
-  const user =
-    localStorage.getItem("user");
+  const [user, setUser] =
+    useState(null);
+
+  useEffect(() => {
+    const storedUser =
+      localStorage.getItem("user");
+
+    if (storedUser) {
+      try {
+        setUser(
+          JSON.parse(storedUser)
+        );
+      } catch (error) {
+        localStorage.removeItem(
+          "user"
+        );
+
+        setUser(null);
+      }
+    }
+  }, []);
 
   return (
     <BrowserRouter>
       <Routes>
+        {/* LOGIN */}
+
         <Route
           path="/"
-          element={<Login />}
+          element={
+            user ? (
+              <Navigate
+                to="/products"
+              />
+            ) : (
+              <Login />
+            )
+          }
         />
+
+        {/* PRODUCTS */}
 
         <Route
           path="/products"
@@ -41,6 +75,8 @@ function App() {
           }
         />
 
+        {/* CART */}
+
         <Route
           path="/cart"
           element={
@@ -51,6 +87,8 @@ function App() {
             )
           }
         />
+
+        {/* CHECKOUT */}
 
         <Route
           path="/checkout"
@@ -63,6 +101,8 @@ function App() {
           }
         />
 
+        {/* SUCCESS */}
+
         <Route
           path="/success"
           element={
@@ -73,6 +113,8 @@ function App() {
             )
           }
         />
+
+        {/* ORDERS */}
 
         <Route
           path="/orders"
@@ -85,6 +127,8 @@ function App() {
           }
         />
 
+        {/* WISHLIST */}
+
         <Route
           path="/wishlist"
           element={
@@ -96,6 +140,8 @@ function App() {
           }
         />
 
+        {/* PROFILE */}
+
         <Route
           path="/profile"
           element={
@@ -105,6 +151,13 @@ function App() {
               <Navigate to="/" />
             )
           }
+        />
+
+        {/* FALLBACK */}
+
+        <Route
+          path="*"
+          element={<Navigate to="/" />}
         />
       </Routes>
     </BrowserRouter>
