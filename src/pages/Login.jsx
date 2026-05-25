@@ -16,17 +16,7 @@ function Login() {
   const [password, setPassword] =
     useState("");
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    if (!email || !password) {
-      alert(
-        "Please enter email and password"
-      );
-
-      return;
-    }
-
+  const handleLogin = () => {
     if (
       email ===
         "ecommerce@gmail.com" &&
@@ -34,105 +24,109 @@ function Login() {
     ) {
       localStorage.setItem(
         "user",
-        JSON.stringify({
-          email,
-        })
+        email
       );
 
       navigate("/products");
     } else {
       alert(
-        "Wrong Credentials! Please check your email and password."
+        "Invalid Email or Password"
       );
     }
   };
 
   return (
-    <div
-      className="login-page"
-      data-testid="login-page"
-    >
+    <div className="login-page">
       <div className="overlay"></div>
 
       <div className="login-container">
-        <form
-          className="login-box"
-          onSubmit={handleLogin}
-          data-testid="login-form"
-        >
+        <div className="login-box">
           <h1>ShopEase</h1>
 
           <p>
             Login to continue shopping
           </p>
 
-          <div className="input-group">
-            <FaEnvelope className="input-icon" />
+          <div
+            style={{
+              position: "relative",
+            }}
+          >
+            <FaEnvelope
+              style={{
+                position: "absolute",
+                left: "15px",
+                top: "18px",
+                color: "gray",
+              }}
+            />
 
             <input
-              id="email"
-              name="email"
               type="email"
               placeholder="Enter Email"
-              aria-label="Email"
-              data-testid="email-input"
-              className="login-input"
               value={email}
               onChange={(e) =>
-                setEmail(
-                  e.target.value
-                )
+                setEmail(e.target.value)
               }
+              style={{
+                paddingLeft: "45px",
+              }}
             />
           </div>
 
-          <div className="input-group">
-            <FaLock className="input-icon" />
+          <div
+            style={{
+              position: "relative",
+            }}
+          >
+            <FaLock
+              style={{
+                position: "absolute",
+                left: "15px",
+                top: "18px",
+                color: "gray",
+              }}
+            />
 
             <input
-              id="password"
-              name="password"
               type="password"
               placeholder="Enter Password"
-              aria-label="Password"
-              data-testid="password-input"
-              className="login-input"
               value={password}
               onChange={(e) =>
-                setPassword(
-                  e.target.value
-                )
+                setPassword(e.target.value)
               }
+              style={{
+                paddingLeft: "45px",
+              }}
             />
           </div>
 
-          <button
-            id="login-btn"
-            name="loginButton"
-            type="submit"
-            aria-label="Login Button"
-            data-testid="login-button"
-            className="login-btn"
-          >
+          <button onClick={handleLogin}>
             Login
           </button>
 
-          <div className="demo-credentials">
-            <h4>
-              Demo Credentials
-            </h4>
+          <div
+            style={{
+              marginTop: "25px",
+              textAlign: "center",
+              color: "#d1d5db",
+              lineHeight: "1.8",
+            }}
+          >
+            Demo Credentials:
+            <br />
 
-            <p>
-              Email:
+            <strong>
               ecommerce@gmail.com
-            </p>
+            </strong>
 
-            <p>
-              Password:
+            <br />
+
+            <strong>
               Test@321
-            </p>
+            </strong>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
