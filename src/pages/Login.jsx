@@ -144,12 +144,12 @@ function Login() {
             id="login-btn"
             name="loginButton"
             type="submit"
-            aria-label="Login Button"
+            aria-label="Login"
             data-testid="login-button"
             className="login-btn"
           >
             Login
-          </button>
+       </button>
 
           <div
             className="demo-credentials"
