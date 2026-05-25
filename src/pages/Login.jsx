@@ -66,12 +66,8 @@ function Login() {
             Login to continue shopping
           </p>
 
-          <div
-            className="input-group"
-          >
-            <FaEnvelope
-              className="input-icon"
-            />
+          <div className="input-group">
+            <FaEnvelope className="input-icon" />
 
             <input
               id="email"
@@ -90,12 +86,8 @@ function Login() {
             />
           </div>
 
-          <div
-            className="input-group"
-          >
-            <FaLock
-              className="input-icon"
-            />
+          <div className="input-group">
+            <FaLock className="input-icon" />
 
             <input
               id="password"

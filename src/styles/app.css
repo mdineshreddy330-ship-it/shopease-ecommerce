@@ -1237,7 +1237,7 @@ body.dark .profile-card button {
 
   width: 100%;
 
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .input-icon {
@@ -1253,23 +1253,41 @@ body.dark .profile-card button {
 
   font-size: 18px;
 
-  z-index: 10;
+  pointer-events: none;
 }
 
 .login-input {
   width: 100%;
 
-  padding: 16px 16px 16px 50px;
+  height: 58px;
+
+  padding: 0 18px 0 55px;
 
   border: none;
 
-  border-radius: 12px;
-
-  font-size: 16px;
-
-  outline: none;
+  border-radius: 14px;
 
   background: rgba(255, 255, 255, 0.95);
 
+  font-size: 17px;
+
   color: #111827;
+
+  outline: none;
+
+  transition: 0.3s ease;
+}
+
+.login-input:focus {
+  box-shadow:
+    0 0 0 3px
+    rgba(37, 99, 235, 0.3);
+
+  background: white;
+}
+
+.login-input::placeholder {
+  color: #6b7280;
+
+  font-size: 16px;
 }
