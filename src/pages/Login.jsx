@@ -23,6 +23,14 @@ function Login() {
     const enteredPassword =
       password.trim();
 
+    if (!email || !password) {
+      alert(
+        "Please enter email and password"
+      );
+
+      return;
+    }
+
     if (
       enteredEmail ===
         "ecommerce@gmail.com" &&
@@ -37,8 +45,7 @@ function Login() {
         })
       );
 
-      window.location.href =
-        "/products";
+      navigate("/products");
     } else {
       alert(
         "Invalid Email or Password"
@@ -64,7 +71,7 @@ function Login() {
             Login to continue shopping
           </p>
 
-          {/* EMAIL */}
+          {/* EMAIL INPUT */}
 
           <div
             style={{
@@ -103,7 +110,7 @@ function Login() {
             />
           </div>
 
-          {/* PASSWORD */}
+          {/* PASSWORD INPUT */}
 
           <div
             style={{
@@ -155,7 +162,7 @@ function Login() {
             Login
           </button>
 
-          {/* DEMO */}
+          {/* DEMO CREDENTIALS */}
 
           <div
             className="demo-credentials"
