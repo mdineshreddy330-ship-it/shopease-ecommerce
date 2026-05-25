@@ -17,6 +17,14 @@ function Login() {
     useState("");
 
   const handleLogin = () => {
+    if (!email || !password) {
+      alert(
+        "Please enter email and password"
+      );
+
+      return;
+    }
+
     if (
       email ===
         "ecommerce@gmail.com" &&
@@ -24,13 +32,17 @@ function Login() {
     ) {
       localStorage.setItem(
         "user",
-        email
+        JSON.stringify({
+          email,
+        })
       );
+
+      alert("Login Successful");
 
       navigate("/products");
     } else {
       alert(
-        "Invalid Email or Password"
+        "Wrong Credentials! Please check your email and password."
       );
     }
   };
@@ -66,7 +78,9 @@ function Login() {
               placeholder="Enter Email"
               value={email}
               onChange={(e) =>
-                setEmail(e.target.value)
+                setEmail(
+                  e.target.value
+                )
               }
               style={{
                 paddingLeft: "45px",
@@ -93,7 +107,9 @@ function Login() {
               placeholder="Enter Password"
               value={password}
               onChange={(e) =>
-                setPassword(e.target.value)
+                setPassword(
+                  e.target.value
+                )
               }
               style={{
                 paddingLeft: "45px",
@@ -105,26 +121,20 @@ function Login() {
             Login
           </button>
 
-          <div
-            style={{
-              marginTop: "25px",
-              textAlign: "center",
-              color: "#d1d5db",
-              lineHeight: "1.8",
-            }}
-          >
-            Demo Credentials:
-            <br />
+          <div className="demo-credentials">
+            <p>
+              Demo Credentials
+            </p>
 
-            <strong>
+            <p>
+              Email:
               ecommerce@gmail.com
-            </strong>
+            </p>
 
-            <br />
-
-            <strong>
+            <p>
+              Password:
               Test@321
-            </strong>
+            </p>
           </div>
         </div>
       </div>
