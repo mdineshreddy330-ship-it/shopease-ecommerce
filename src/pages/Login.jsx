@@ -16,20 +16,14 @@ function Login() {
   const [password, setPassword] =
     useState("");
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+
     const enteredEmail =
       email.trim();
 
     const enteredPassword =
       password.trim();
-
-    if (!email || !password) {
-      alert(
-        "Please enter email and password"
-      );
-
-      return;
-    }
 
     if (
       enteredEmail ===
@@ -61,9 +55,11 @@ function Login() {
       <div className="overlay"></div>
 
       <div className="login-container">
-        <div
+        <form
           className="login-box"
+          onSubmit={handleLogin}
           data-testid="login-form"
+          noValidate
         >
           <h1>ShopEase</h1>
 
@@ -71,7 +67,7 @@ function Login() {
             Login to continue shopping
           </p>
 
-          {/* EMAIL INPUT */}
+          {/* EMAIL */}
 
           <div
             style={{
@@ -79,6 +75,15 @@ function Login() {
               marginBottom: "20px",
             }}
           >
+            <label
+              htmlFor="email"
+              style={{
+                display: "none",
+              }}
+            >
+              Email
+            </label>
+
             <FaEnvelope
               style={{
                 position: "absolute",
@@ -93,11 +98,11 @@ function Login() {
               id="email"
               name="email"
               type="email"
+              placeholder="Enter Email"
               aria-label="Email"
               data-testid="email-input"
+              autoComplete="email"
               className="login-input"
-              placeholder="Enter Email"
-              autoComplete="off"
               value={email}
               onChange={(e) =>
                 setEmail(
@@ -110,7 +115,7 @@ function Login() {
             />
           </div>
 
-          {/* PASSWORD INPUT */}
+          {/* PASSWORD */}
 
           <div
             style={{
@@ -118,6 +123,15 @@ function Login() {
               marginBottom: "20px",
             }}
           >
+            <label
+              htmlFor="password"
+              style={{
+                display: "none",
+              }}
+            >
+              Password
+            </label>
+
             <FaLock
               style={{
                 position: "absolute",
@@ -132,11 +146,11 @@ function Login() {
               id="password"
               name="password"
               type="password"
+              placeholder="Enter Password"
               aria-label="Password"
               data-testid="password-input"
+              autoComplete="current-password"
               className="login-input"
-              placeholder="Enter Password"
-              autoComplete="off"
               value={password}
               onChange={(e) =>
                 setPassword(
@@ -153,16 +167,16 @@ function Login() {
 
           <button
             id="login-btn"
-            data-testid="login-button"
+            name="loginButton"
+            type="submit"
             aria-label="Login"
+            data-testid="login-button"
             className="login-btn"
-            onClick={handleLogin}
-            type="button"
           >
             Login
           </button>
 
-          {/* DEMO CREDENTIALS */}
+          {/* DEMO */}
 
           <div
             className="demo-credentials"
@@ -187,7 +201,7 @@ function Login() {
               Test@321
             </strong>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
