@@ -16,7 +16,9 @@ function Login() {
   const [password, setPassword] =
     useState("");
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+
     if (!email || !password) {
       alert(
         "Please enter email and password"
@@ -46,11 +48,18 @@ function Login() {
   };
 
   return (
-    <div className="login-page">
+    <div
+      className="login-page"
+      data-testid="login-page"
+    >
       <div className="overlay"></div>
 
       <div className="login-container">
-        <div className="login-box">
+        <form
+          className="login-box"
+          onSubmit={handleLogin}
+          data-testid="login-form"
+        >
           <h1>ShopEase</h1>
 
           <p>
@@ -58,64 +67,61 @@ function Login() {
           </p>
 
           <div
-            style={{
-              position: "relative",
-            }}
+            className="input-group"
           >
             <FaEnvelope
-              style={{
-                position: "absolute",
-                left: "15px",
-                top: "18px",
-                color: "gray",
-              }}
+              className="input-icon"
             />
 
             <input
+              id="email"
+              name="email"
               type="email"
               placeholder="Enter Email"
+              aria-label="Email"
+              data-testid="email-input"
+              className="login-input"
               value={email}
               onChange={(e) =>
                 setEmail(
                   e.target.value
                 )
               }
-              style={{
-                paddingLeft: "45px",
-              }}
             />
           </div>
 
           <div
-            style={{
-              position: "relative",
-            }}
+            className="input-group"
           >
             <FaLock
-              style={{
-                position: "absolute",
-                left: "15px",
-                top: "18px",
-                color: "gray",
-              }}
+              className="input-icon"
             />
 
             <input
+              id="password"
+              name="password"
               type="password"
               placeholder="Enter Password"
+              aria-label="Password"
+              data-testid="password-input"
+              className="login-input"
               value={password}
               onChange={(e) =>
                 setPassword(
                   e.target.value
                 )
               }
-              style={{
-                paddingLeft: "45px",
-              }}
             />
           </div>
 
-          <button onClick={handleLogin}>
+          <button
+            id="login-btn"
+            name="loginButton"
+            type="submit"
+            aria-label="Login Button"
+            data-testid="login-button"
+            className="login-btn"
+          >
             Login
           </button>
 
@@ -134,7 +140,7 @@ function Login() {
               Test@321
             </p>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
