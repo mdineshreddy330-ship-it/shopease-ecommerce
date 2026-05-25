@@ -36,7 +36,7 @@ function Login() {
       localStorage.setItem(
         "user",
         JSON.stringify({
-          email,
+          email: email,
         })
       );
 
@@ -59,6 +59,7 @@ function Login() {
         <form
           className="login-box"
           onSubmit={handleLogin}
+          noValidate
           data-testid="login-form"
         >
           <h1>ShopEase</h1>
@@ -70,6 +71,7 @@ function Login() {
           <div
             style={{
               position: "relative",
+              marginBottom: "20px",
             }}
           >
             <FaEnvelope
@@ -77,9 +79,11 @@ function Login() {
               style={{
                 position: "absolute",
                 left: "15px",
-                top: "18px",
+                top: "50%",
+                transform:
+                  "translateY(-50%)",
                 color: "gray",
-                zIndex: "10",
+                zIndex: 10,
               }}
             />
 
@@ -87,9 +91,9 @@ function Login() {
               id="email"
               name="email"
               type="email"
-              aria-label="Email Address"
+              aria-label="Email"
               data-testid="email-input"
-              className="email-input"
+              className="login-input"
               placeholder="Enter Email"
               value={email}
               onChange={(e) =>
@@ -106,7 +110,7 @@ function Login() {
           <div
             style={{
               position: "relative",
-              marginTop: "20px",
+              marginBottom: "20px",
             }}
           >
             <FaLock
@@ -114,9 +118,11 @@ function Login() {
               style={{
                 position: "absolute",
                 left: "15px",
-                top: "18px",
+                top: "50%",
+                transform:
+                  "translateY(-50%)",
                 color: "gray",
-                zIndex: "10",
+                zIndex: 10,
               }}
             />
 
@@ -126,7 +132,7 @@ function Login() {
               type="password"
               aria-label="Password"
               data-testid="password-input"
-              className="password-input"
+              className="login-input"
               placeholder="Enter Password"
               value={password}
               onChange={(e) =>
@@ -149,7 +155,7 @@ function Login() {
             className="login-btn"
           >
             Login
-       </button>
+          </button>
 
           <div
             className="demo-credentials"
