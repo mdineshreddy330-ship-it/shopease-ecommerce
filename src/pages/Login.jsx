@@ -16,15 +16,28 @@ function Login() {
   const [password, setPassword] =
     useState("");
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      alert(
+        "Please enter email and password"
+      );
+
+      return;
+    }
+
     if (
-      email ===
+      email.trim() ===
         "ecommerce@gmail.com" &&
-      password === "Test@321"
+      password.trim() ===
+        "Test@321"
     ) {
       localStorage.setItem(
         "user",
-        email
+        JSON.stringify({
+          email,
+        })
       );
 
       navigate("/products");
@@ -36,11 +49,18 @@ function Login() {
   };
 
   return (
-    <div className="login-page">
+    <div
+      className="login-page"
+      data-testid="login-page"
+    >
       <div className="overlay"></div>
 
       <div className="login-container">
-        <div className="login-box">
+        <form
+          className="login-box"
+          onSubmit={handleLogin}
+          data-testid="login-form"
+        >
           <h1>ShopEase</h1>
 
           <p>
@@ -53,20 +73,29 @@ function Login() {
             }}
           >
             <FaEnvelope
+              className="email-icon"
               style={{
                 position: "absolute",
                 left: "15px",
                 top: "18px",
                 color: "gray",
+                zIndex: "10",
               }}
             />
 
             <input
+              id="email"
+              name="email"
               type="email"
+              aria-label="Email Address"
+              data-testid="email-input"
+              className="email-input"
               placeholder="Enter Email"
               value={email}
               onChange={(e) =>
-                setEmail(e.target.value)
+                setEmail(
+                  e.target.value
+                )
               }
               style={{
                 paddingLeft: "45px",
@@ -77,23 +106,33 @@ function Login() {
           <div
             style={{
               position: "relative",
+              marginTop: "20px",
             }}
           >
             <FaLock
+              className="password-icon"
               style={{
                 position: "absolute",
                 left: "15px",
                 top: "18px",
                 color: "gray",
+                zIndex: "10",
               }}
             />
 
             <input
+              id="password"
+              name="password"
               type="password"
+              aria-label="Password"
+              data-testid="password-input"
+              className="password-input"
               placeholder="Enter Password"
               value={password}
               onChange={(e) =>
-                setPassword(e.target.value)
+                setPassword(
+                  e.target.value
+                )
               }
               style={{
                 paddingLeft: "45px",
@@ -101,11 +140,19 @@ function Login() {
             />
           </div>
 
-          <button onClick={handleLogin}>
+          <button
+            id="login-btn"
+            name="loginButton"
+            type="submit"
+            aria-label="Login Button"
+            data-testid="login-button"
+            className="login-btn"
+          >
             Login
           </button>
 
           <div
+            className="demo-credentials"
             style={{
               marginTop: "25px",
               textAlign: "center",
@@ -113,8 +160,9 @@ function Login() {
               lineHeight: "1.8",
             }}
           >
-            Demo Credentials:
-            <br />
+            <h3>
+              Demo Credentials
+            </h3>
 
             <strong>
               ecommerce@gmail.com
@@ -126,7 +174,7 @@ function Login() {
               Test@321
             </strong>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
